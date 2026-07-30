@@ -1,29 +1,30 @@
 package org.example;
 
-import org.example.lab01.at_01.Gerente;
-import org.example.lab01.at_01.Funcionario;
-import org.example.lab01.at_01.Projeto;
+import org.example.vetor.VetorEstatico;
 
 
 public class Main {
     static void main() {
 
-        Gerente gerente = new Gerente("Gelson", 8000);
+        VetorEstatico vetor = new VetorEstatico(10);
 
-        Funcionario[] funcionarios = new Funcionario[3];
+        vetor.inserir("A");
+        vetor.inserir("B");
+        vetor.inserir("C");
+        vetor.inserir("D");
+        vetor.inserir("E");
+        vetor.inserir("F");
 
-        funcionarios[0] = new Funcionario("João", 3000);
-        funcionarios[1] = new Funcionario("Maria", 3500);
-        funcionarios[2] = new Funcionario("Carlos", 2800);
+        vetor.inserir(2,"J");
 
-        Projeto projeto = new Projeto(
-                "Sistema de Estoque",
-                gerente,
-                funcionarios,
-                true
-        );
+        vetor.imprimir();
+        vetor.obterTamanho();
 
-        projeto.exibirProjeto();
+        System.out.println("//-----------------------------------------//");
+
+        vetor.removerFinal();
+        vetor.imprimir();
+        vetor.obterTamanho();
 
     }
 }
