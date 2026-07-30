@@ -1,4 +1,4 @@
-package org.example.lab01;
+package org.example.lab01.at_01;
 
 public class Gerente {
 

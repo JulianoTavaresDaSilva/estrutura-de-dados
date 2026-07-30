@@ -1,8 +1,8 @@
 package org.example;
 
-import org.example.lab01.Gerente;
-import org.example.lab01.Funcionario;
-import org.example.lab01.Projeto;
+import org.example.lab01.at_01.Gerente;
+import org.example.lab01.at_01.Funcionario;
+import org.example.lab01.at_01.Projeto;
 
 
 public class Main {
