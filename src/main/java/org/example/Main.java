@@ -16,15 +16,32 @@ public class Main {
         vetor.inserir("F");
 
         vetor.inserir(2,"J");
+        vetor.inserir("J");
+        vetor.inserir("J");
+        vetor.inserir("J");
 
         vetor.imprimir();
         vetor.obterTamanho();
 
-        System.out.println("//-----------------------------------------//");
+        System.out.println("//-------------------Removendo por Indice------------------//");
+
+        vetor.remover(2);
+
+        vetor.imprimir();
+        vetor.obterTamanho();
+
+        System.out.println("//-------------------Removendo por Elemento------------------//");
+
+        vetor.removerElemento("J");
+
+        vetor.imprimir();
+        vetor.obterTamanho();
+
+        System.out.println("//-----------------Removendo Ultimo------------------//");
 
         vetor.removerFinal();
+
         vetor.imprimir();
         vetor.obterTamanho();
-
     }
 }
