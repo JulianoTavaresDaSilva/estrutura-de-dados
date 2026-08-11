@@ -1,4 +1,4 @@
-package org.example.vetor;
+package org.example.vetores;
 
 public class VetorEstatico {
 
@@ -57,7 +57,7 @@ public class VetorEstatico {
             return;
         }
 
-        for (int i = indice; i < tamanho; i++){
+        for (int i = indice; i < tamanho - 1; i++){
             elementos[i] = elementos[i+1];
         }
 
