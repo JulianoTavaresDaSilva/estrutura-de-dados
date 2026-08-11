@@ -1,47 +1,34 @@
 package org.example;
 
+import org.example.vetores.VetorDinamico;
 import org.example.vetores.VetorEstatico;
 
 
 public class Main {
     static void main() {
 
-        VetorEstatico vetor = new VetorEstatico(10);
+        VetorDinamico vetor = new VetorDinamico(2);
 
         vetor.inserir("A");
         vetor.inserir("B");
+        vetor.imprimir();
+
+
         vetor.inserir("C");
+        vetor.imprimir();
+
         vetor.inserir("D");
         vetor.inserir("E");
         vetor.inserir("F");
-
-        vetor.inserir(2,"J");
-        vetor.inserir("J");
-        vetor.inserir("J");
-        vetor.inserir("J");
-
+        vetor.inserir("G");
         vetor.imprimir();
-        vetor.obterTamanho();
 
-        System.out.println("//-------------------Removendo por Indice------------------//");
-
-        vetor.remover(2);
-
+        vetor.remover(0);
+        vetor.remover(0);
+        vetor.remover(0);
+        vetor.remover(0);
+        vetor.remover(0);
         vetor.imprimir();
-        vetor.obterTamanho();
 
-        System.out.println("//-------------------Removendo por Elemento------------------//");
-
-        vetor.removerElemento("J");
-
-        vetor.imprimir();
-        vetor.obterTamanho();
-
-        System.out.println("//-----------------Removendo Ultimo------------------//");
-
-        vetor.removerFinal();
-
-        vetor.imprimir();
-        vetor.obterTamanho();
     }
 }

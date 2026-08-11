@@ -86,7 +86,7 @@ public class VetorEstatico {
     public void imprimir(){
         System.out.print("[");
 
-        for (int i = 0; i < tamanho-1; i++){
+        for (int i = 0; i < tamanho - 1; i++){
             System.out.print(elementos[i]);
             if (i < tamanho - 2){
                 System.out.print(", ");
