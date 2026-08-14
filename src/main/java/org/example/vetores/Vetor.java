@@ -7,6 +7,10 @@ public class Vetor<T> {
 
     @SuppressWarnings("unchecked")
     public Vetor(int quantidade){
+        if (quantidade <= 0) {
+            throw new IllegalArgumentException("A capacidade deve ser maior que zero.");
+        }
+
         elementos =  (T[]) new Object[quantidade];
         tamanho = 0;
     }
@@ -30,7 +34,7 @@ public class Vetor<T> {
 
     @SuppressWarnings("unchecked")
     private void reduzir(){
-        if (tamanho <= elementos.length / 4){
+        if (elementos.length > 1 && tamanho <= elementos.length / 4){
             T[] novo = (T[]) new Object[elementos.length / 2];
             for (int i = 0; i < tamanho; i++){
                 novo[i] = elementos[i];
@@ -57,7 +61,7 @@ public class Vetor<T> {
     public void imprimir(){
         System.out.print("[");
 
-        for (int i = 0; i < elementos.length; i++){
+        for (int i = 0; i < tamanho; i++){
             System.out.print(elementos[i]);
             if (i < elementos.length - 1){
                 System.out.print(", ");

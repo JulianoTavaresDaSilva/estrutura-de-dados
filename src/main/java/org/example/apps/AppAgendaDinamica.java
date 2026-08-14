@@ -1,14 +1,17 @@
-package org.example.lab02;
+package org.example.apps;
+
+import org.example.lab02.Contato;
+import org.example.lab02_dinamico.Agenda;
 
 import java.util.Scanner;
 
-public class App {
+public class AppAgendaDinamica {
 
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
 
-        Agenda agenda = new Agenda(20);
+        Agenda agenda = new Agenda(2);
 
         int opcao;
 
@@ -168,7 +171,6 @@ public class App {
 
                 case 0:
                     System.out.println("Encerrando agenda...");
-
                     break;
 
                 default:

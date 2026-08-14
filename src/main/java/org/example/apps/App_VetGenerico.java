@@ -1,9 +1,8 @@
-package org.example;
+package org.example.apps;
 
 import org.example.vetores.Vetor;
 
-
-public class Main {
+public class App_VetGenerico {
     static void main() {
 
 

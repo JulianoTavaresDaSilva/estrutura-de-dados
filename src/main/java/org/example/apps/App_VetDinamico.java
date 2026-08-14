@@ -1,6 +1,8 @@
-package org.example.vetores;
+package org.example.apps;
 
-public class App_Dinamico {
+import org.example.vetores.VetorDinamico;
+
+public class App_VetDinamico {
     static void main() {
 
         VetorDinamico vetor = new VetorDinamico(2);

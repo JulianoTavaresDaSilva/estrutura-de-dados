@@ -1,7 +1,9 @@
-package org.example.vetores;
+package org.example.apps;
 
 
-public class App_Estatico {
+import org.example.vetores.VetorEstatico;
+
+public class App_VetEstatico {
     static void main() {
 
         VetorEstatico vetor = new VetorEstatico(10);
