@@ -1,72 +1,143 @@
 package org.example.vetores;
 
 public class Vetor<T> {
-
     private T[] elementos;
     private int tamanho;
 
     @SuppressWarnings("unchecked")
-    public Vetor(int quantidade){
-        if (quantidade <= 0) {
-            throw new IllegalArgumentException("A capacidade deve ser maior que zero.");
-        }
-
-        elementos =  (T[]) new Object[quantidade];
-        tamanho = 0;
+    public Vetor(int quantidade) {
+        this.elementos = (T[])(new Object[quantidade]);
+        this.tamanho = 0;
     }
 
-    public void inserir(T elemento){
-        if (tamanho == elementos.length){
-            expandir();
+    public void inserir(T elemento) {
+        if (this.tamanho == this.elementos.length) {
+            this.expandir();
         }
-        elementos[tamanho] = elemento;
-        tamanho++;
+
+        this.elementos[this.tamanho] = elemento;
+        ++this.tamanho;
     }
 
     @SuppressWarnings("unchecked")
-    private void expandir(){
-        T[] novo = (T[]) new Object[elementos.length * 2];
-        for (int i = 0; i < elementos.length; i++){
-            novo[i] = elementos[i];
+    private void expandir() {
+        T[] novo = (T[])(new Object[this.elementos.length * 2]);
+
+        for(int i = 0; i < this.elementos.length; ++i) {
+            novo[i] = this.elementos[i];
         }
-        elementos = novo;
+
+        this.elementos = novo;
     }
 
     @SuppressWarnings("unchecked")
-    private void reduzir(){
-        if (elementos.length > 1 && tamanho <= elementos.length / 4){
-            T[] novo = (T[]) new Object[elementos.length / 2];
-            for (int i = 0; i < tamanho; i++){
-                novo[i] = elementos[i];
+    private void reduzir() {
+        if (this.tamanho <= this.elementos.length / 4) {
+            T[] novo = (T[])(new Object[this.elementos.length / 2]);
+
+            for(int i = 0; i < this.tamanho; ++i) {
+                novo[i] = this.elementos[i];
             }
-            elementos = novo;
+
+            this.elementos = novo;
+        }
+
+    }
+
+    public void remover(int indice) {
+        if (indice >= 0 && indice < this.tamanho) {
+            for(int i = indice; i < this.tamanho; ++i) {
+                this.elementos[i] = this.elementos[i + 1];
+            }
+
+            this.elementos[this.tamanho - 1] = null;
+            --this.tamanho;
+            this.reduzir();
+        } else {
+            System.out.println("Indice Inválido");
         }
     }
 
-    public void remover(int indice){
-        if (indice < 0 || indice >= tamanho){
-            System.out.println("Indice Invalido");
-            return;
+    public void inserir(int indice, T elemento) {
+        if (this.tamanho == this.elementos.length) {
+            this.expandir();
         }
 
-        for (int i = indice; i < tamanho - 1; i++){
-            elementos[i] = elementos[i+1];
-        }
+        if (indice >= 0 && indice <= this.elementos.length) {
+            for(int i = this.tamanho; i > indice; --i) {
+                this.elementos[i] = this.elementos[i - 1];
+            }
 
-        elementos[tamanho-1] = null;
-        tamanho--;
-        reduzir();
+            this.elementos[indice] = elemento;
+            ++this.tamanho;
+        } else {
+            System.out.println("Posição Inválida");
+        }
     }
 
-    public void imprimir(){
+    public void inserirOrdenadov2(T valor) {
+        if (this.localizar(valor) != -1) {
+            System.out.println("Valor " + String.valueOf(valor) + " já existe na lista.");
+        } else if (this.tamanho == 0) {
+            this.inserir(this.tamanho, valor);
+        } else {
+            for(int i = 0; i < this.tamanho; ++i) {
+                if ((Integer)valor < (Integer)this.elementos[i]) {
+                    this.inserir(i, valor);
+                    break;
+                }
+            }
+
+        }
+    }
+
+    public void inserirOrdenado(T valor) {
+        if (this.localizar(valor) != -1) {
+            System.out.println("Valor " + String.valueOf(valor) + " já existe na lista.");
+        } else {
+            if (this.tamanho == this.elementos.length) {
+                this.expandir();
+            }
+
+            int i;
+            for(i = this.tamanho - 1; i >= 0; --i) {
+                Integer atual = (Integer)this.elementos[i];
+                if (atual <= (Integer)valor) {
+                    break;
+                }
+
+                this.elementos[i + 1] = this.elementos[i];
+            }
+
+            this.elementos[i + 1] = valor;
+            ++this.tamanho;
+        }
+    }
+
+    public int obterTamanho() {
+        return this.tamanho;
+    }
+
+    public int localizar(T valor) {
+        for(int i = 0; i < this.tamanho; ++i) {
+            if (this.elementos[i] != null && this.elementos[i] == valor) {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
+    public void imprimir() {
         System.out.print("[");
 
-        for (int i = 0; i < tamanho; i++){
-            System.out.print(elementos[i]);
-            if (i < elementos.length - 1){
+        for(int i = 0; i < this.tamanho; ++i) {
+            System.out.print(this.elementos[i]);
+            if (i < this.tamanho - 1) {
                 System.out.print(", ");
             }
         }
+
         System.out.println("]");
     }
 }
