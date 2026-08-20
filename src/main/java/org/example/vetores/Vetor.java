@@ -128,6 +128,37 @@ public class Vetor<T> {
         return -1;
     }
 
+    public int buscaLinear(T elemento) {
+        for (int i = 0; i < this.tamanho; ++i) {
+            if (this.elementos[i] != null && this.elementos[i].equals(elemento)) {
+                return i;
+            }
+        }
+        return -1; // Não encontrado
+    }
+
+    public int buscarBinaria(Integer elemento) {
+        int inicio = 0;
+        int fim = this.tamanho - 1;
+
+        while (inicio <= fim) {
+            int meio = (inicio + fim) / 2;
+            Integer valorMeio = (Integer) this.elementos[meio]; // Pega o VALOR que está guardado no índice 'meio'
+
+            if (valorMeio.equals(elemento)) {
+                return meio;
+            }
+
+            if (valorMeio > elemento) {
+                fim = meio - 1;
+            } else {
+                inicio = meio + 1;
+            }
+        }
+
+        return -1; // Não encontrado
+    }
+
     public void imprimir() {
         System.out.print("[");
 
