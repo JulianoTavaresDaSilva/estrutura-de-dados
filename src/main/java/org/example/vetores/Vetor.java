@@ -1,5 +1,7 @@
 package org.example.vetores;
 
+import java.util.Random;
+
 public class Vetor<T> {
     private T[] elementos;
     private int tamanho;
@@ -10,6 +12,15 @@ public class Vetor<T> {
         this.tamanho = 0;
     }
 
+    public T ler(int indice) {
+        if (indice >= 0 && indice < this.tamanho) {
+            return this.elementos[indice];
+        } else {
+            System.out.println("Índice Inválido");
+            return null;
+        }
+    }
+
     public void inserir(T elemento) {
         if (this.tamanho == this.elementos.length) {
             this.expandir();
@@ -17,6 +28,63 @@ public class Vetor<T> {
 
         this.elementos[this.tamanho] = elemento;
         ++this.tamanho;
+    }
+
+    public void inserir(int indice, T elemento) {
+        if (this.tamanho == this.elementos.length) {
+            this.expandir();
+        }
+
+        if (indice >= 0 && indice <= this.tamanho) {
+            for(int i = this.tamanho; i > indice; --i) {
+                this.elementos[i] = this.elementos[i - 1];
+            }
+
+            this.elementos[indice] = elemento;
+            ++this.tamanho;
+        } else {
+            System.out.println("Posição Inválida");
+        }
+    }
+
+    // checa o valor para não ter valores duplicados
+    public void inserirOrdenado(T elemento) {
+        if (this.buscaLinear(elemento) != -1) {
+            System.out.println("Valor " + String.valueOf(elemento) + " já existe na lista.");
+        } else {
+            this.inserirOrdenadoRepetidos(elemento);
+        }
+    }
+
+    // percorre o array do fim para o início para inserir o elemento de forma ordenada
+    public void inserirOrdenadoRepetidos(T elemento) {
+        if (this.tamanho == this.elementos.length) {
+            this.expandir();
+        }
+
+        int i;
+        for(i = this.tamanho - 1; i >= 0; --i) {
+            Integer atual = (Integer)this.elementos[i];
+            if (atual <= (Integer)elemento) {
+                break;
+            }
+
+            this.elementos[i + 1] = this.elementos[i];
+        }
+
+        this.elementos[i + 1] = elemento;
+        ++this.tamanho;
+    }
+
+    @SuppressWarnings("unchecked")
+    public void inserirAleatorio(int quantidade, int range){
+        Random aleatorio = new Random();
+
+        while (obterTamanho() < quantidade){
+            int numeroAleatorio = aleatorio.nextInt(range);
+            T valor = (T) (Object) numeroAleatorio;
+            inserirOrdenadoRepetidos(valor);
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -46,7 +114,7 @@ public class Vetor<T> {
 
     public void remover(int indice) {
         if (indice >= 0 && indice < this.tamanho) {
-            for(int i = indice; i < this.tamanho; ++i) {
+            for(int i = indice; i < this.tamanho - 1; ++i) {
                 this.elementos[i] = this.elementos[i + 1];
             }
 
@@ -56,76 +124,6 @@ public class Vetor<T> {
         } else {
             System.out.println("Indice Inválido");
         }
-    }
-
-    public void inserir(int indice, T elemento) {
-        if (this.tamanho == this.elementos.length) {
-            this.expandir();
-        }
-
-        if (indice >= 0 && indice <= this.elementos.length) {
-            for(int i = this.tamanho; i > indice; --i) {
-                this.elementos[i] = this.elementos[i - 1];
-            }
-
-            this.elementos[indice] = elemento;
-            ++this.tamanho;
-        } else {
-            System.out.println("Posição Inválida");
-        }
-    }
-
-    public void inserirOrdenadov2(T valor) {
-        if (this.localizar(valor) != -1) {
-            System.out.println("Valor " + String.valueOf(valor) + " já existe na lista.");
-        } else if (this.tamanho == 0) {
-            this.inserir(this.tamanho, valor);
-        } else {
-            for(int i = 0; i < this.tamanho; ++i) {
-                if ((Integer)valor < (Integer)this.elementos[i]) {
-                    this.inserir(i, valor);
-                    break;
-                }
-            }
-
-        }
-    }
-
-    public void inserirOrdenado(T valor) {
-        if (this.localizar(valor) != -1) {
-            System.out.println("Valor " + String.valueOf(valor) + " já existe na lista.");
-        } else {
-            if (this.tamanho == this.elementos.length) {
-                this.expandir();
-            }
-
-            int i;
-            for(i = this.tamanho - 1; i >= 0; --i) {
-                Integer atual = (Integer)this.elementos[i];
-                if (atual <= (Integer)valor) {
-                    break;
-                }
-
-                this.elementos[i + 1] = this.elementos[i];
-            }
-
-            this.elementos[i + 1] = valor;
-            ++this.tamanho;
-        }
-    }
-
-    public int obterTamanho() {
-        return this.tamanho;
-    }
-
-    public int localizar(T valor) {
-        for(int i = 0; i < this.tamanho; ++i) {
-            if (this.elementos[i] != null && this.elementos[i] == valor) {
-                return i;
-            }
-        }
-
-        return -1;
     }
 
     public int buscaLinear(T elemento) {
@@ -157,6 +155,10 @@ public class Vetor<T> {
         }
 
         return -1; // Não encontrado
+    }
+
+    public int obterTamanho() {
+        return this.tamanho;
     }
 
     public void imprimir() {
