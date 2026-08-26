@@ -1,6 +1,4 @@
-package org.example.lab02_dinamico;
-
-import org.example.lab02.Contato;
+package org.example.lab01;
 
 public class Agenda {
 
@@ -14,8 +12,9 @@ public class Agenda {
 
     public void adicionar(Contato contato) {
 
-        if (tamanho == contatos.length){
-            expandir();
+        if (tamanho >= contatos.length){
+            System.out.println("Vetor cheio");
+            return;
         }
 
         for (int i = 0; i < tamanho; i++){
@@ -34,24 +33,6 @@ public class Agenda {
         tamanho++;
     }
 
-    private void expandir(){
-        Contato[] novo = new Contato[contatos.length * 2];
-        for (int i = 0; i < contatos.length; i++){
-            novo[i] = contatos[i];
-        }
-        contatos = novo;
-    }
-
-    private void reduzir(){
-        if (contatos.length > 1 && tamanho <= contatos.length / 4){
-            Contato[] novo = new Contato[contatos.length / 2];
-            for (int i = 0; i < tamanho; i++){
-                novo[i] = contatos[i];
-            }
-            contatos = novo;
-        }
-    }
-
     public void remover(String nome) {
         for (int i = 0; i < tamanho; i++){
             if (contatos[i].getNome().equals(nome)){
@@ -60,7 +41,6 @@ public class Agenda {
                 }
                 contatos[tamanho - 1] = null;
                 tamanho--;
-                reduzir();
                 return;
             }
         }
@@ -122,11 +102,16 @@ public class Agenda {
     }
 
     public void inserirEmLote(Contato[] novosContatos) {
+        if (contatos.length < tamanho + novosContatos.length){
+            System.out.println("Agenda sem espaço suficiente.");
+            return;
+        }
+
         for (int i = 0; i < novosContatos.length; i++){
             for (int j = 0; j < novosContatos.length; j++){
                 if (i != j &&
                         (novosContatos[i].getNome().equals(novosContatos[j].getNome())
-                                || novosContatos[i].getTelefone().equals(novosContatos[j].getTelefone()))){
+                        || novosContatos[i].getTelefone().equals(novosContatos[j].getTelefone()))){
 
                     System.out.println("Lote contém dados duplicados.");
                     return;
@@ -143,10 +128,6 @@ public class Agenda {
                     return;
                 }
             }
-        }
-
-        while (contatos.length < tamanho + novosContatos.length) {
-            expandir();
         }
 
         for (int i = 0; i < novosContatos.length; i++){

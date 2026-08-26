@@ -1,4 +1,4 @@
-package org.example.lab02;
+package org.example.lab01_dinamico;
 
 public class Contato {
 

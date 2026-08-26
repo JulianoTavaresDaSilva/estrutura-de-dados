@@ -1,7 +1,4 @@
-package org.example.apps;
-
-import org.example.lab02.Agenda;
-import org.example.lab02.Contato;
+package org.example.lab01;
 
 import java.util.Scanner;
 

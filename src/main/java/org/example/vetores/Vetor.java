@@ -157,6 +157,18 @@ public class Vetor<T> {
         return -1; // Não encontrado
     }
 
+    public void ordenar(){
+        for(int i = 0; i < tamanho - 1; i++){
+            for (int j = 0; j < tamanho - 1 - i; j++){
+                if ((Integer) this.elementos[j] > (Integer) this.elementos[j+1]){
+                    T reserva = this.elementos[j];
+                    this.elementos[j] = this.elementos[j+1];
+                    this.elementos[j+1] = reserva;
+                }
+            }
+        }
+    }
+
     public int obterTamanho() {
         return this.tamanho;
     }

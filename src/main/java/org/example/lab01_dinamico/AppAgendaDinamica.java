@@ -1,7 +1,6 @@
-package org.example.apps;
+package org.example.lab01_dinamico;
 
-import org.example.lab02.Contato;
-import org.example.lab02_dinamico.Agenda;
+import org.example.lab01.Contato;
 
 import java.util.Scanner;
 
