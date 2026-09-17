@@ -1,6 +1,6 @@
-package org.example.lab01_dinamico;
+package org.example.labs.lab01.lab01_dinamico;
 
-import org.example.lab01.Contato;
+import org.example.labs.lab01.Contato;
 
 import java.util.Scanner;
 

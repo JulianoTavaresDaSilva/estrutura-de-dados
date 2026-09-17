@@ -1,4 +1,4 @@
-package org.example.lab02;
+package org.example.labs.lab02;
 
 import org.example.vetores.Vetor;
 
