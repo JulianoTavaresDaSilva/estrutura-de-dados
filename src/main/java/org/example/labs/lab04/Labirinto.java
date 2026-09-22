@@ -92,7 +92,7 @@ public class Labirinto {
             if (mapa[linha][coluna] != 'P'
                     && mapa[linha][coluna] != 'T') {
 
-                mapa[linha][coluna] = '+';
+                mapa[linha][coluna] = 'X';
             }
         }
     }
