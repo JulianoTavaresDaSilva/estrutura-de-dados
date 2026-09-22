@@ -1,4 +1,4 @@
-package org.example.Pilhas;
+package org.example.pilhas;
 
 public class Pilha<T extends Comparable<T>> {
 
@@ -25,5 +25,13 @@ public class Pilha<T extends Comparable<T>> {
 
     public boolean isEmpty() {
         return topo == -1;
+    }
+
+    public T peek() {
+        if (isEmpty()) {
+            throw new RuntimeException("Pilha Vazia");
+        }
+
+        return elementos[topo];
     }
 }

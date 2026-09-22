@@ -1,4 +1,4 @@
-package org.example.Pilhas;
+package org.example.pilhas;
 import org.example.vetores.Vetor;
 
 public class Stack<T extends Comparable<T>> {
